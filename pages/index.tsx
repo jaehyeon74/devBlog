@@ -31,12 +31,14 @@ const Home: NextPage = ({
         <div className="max-w-5xl mx-auto">
           <div className="flex items-center justify-center">
             <h1 className="font-extrabold text-xl md:text-4xl text-black text-center">
-              Notion + NextJS Sample
+              {`재현의 개발블로그`}
             </h1>
           </div>
-          {posts.map((post: BlogPost) => (
-            <BlogCard key={post.id} post={post} />
-          ))}
+          <div className="mt-12 max-w-lg mx-auto grid gap-5 lg:grid-cols-2 lg:max-w-none">
+            {posts.map((post: BlogPost) => (
+              <BlogCard key={post.id} post={post} />
+            ))}
+          </div>
           <div className="mt-12 max-w-lg mx-auto grid gap"></div>
         </div>
       </main>
