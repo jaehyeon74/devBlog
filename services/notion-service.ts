@@ -1,4 +1,4 @@
-import { BlogPost } from "@/@types/schema";
+import { BlogPost, PostPage } from "@/@types/schema";
 import { Client } from "@notionhq/client";
 import { NotionToMarkdown } from "notion-to-md";
 
@@ -30,6 +30,44 @@ export default class NotionService {
     return response.results.map((res) =>
       NotionService.pageToPostTransformer(res)
     );
+  }
+
+  async getSingleBlogPost(slug: string): Promise<PostPage> {
+    let post, markdown;
+
+    const database = process.env.NOTION_BLOG_DATABASE_ID ?? "";
+    const response = await this.client.databases.query({
+      database_id: database,
+      filter: {
+        property: "Slug",
+        formula: {
+          string: {
+            equals: slug,
+          },
+        },
+      },
+      sorts: [
+        {
+          property: "Updated",
+          direction: "descending",
+        },
+      ],
+    });
+
+    if (!response.results[0]) {
+      throw "No results available";
+    }
+
+    const page = response.results[0];
+
+    const mdBlocks = await this.notionToMarkdown.pageToMarkdown(page.id);
+    markdown = this.notionToMarkdown.toMarkdownString(mdBlocks);
+    post = NotionService.pageToPostTransformer(page);
+
+    return {
+      post,
+      markdown,
+    };
   }
 
   private static pageToPostTransformer(page: any): BlogPost {
