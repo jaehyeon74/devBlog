@@ -17,7 +17,6 @@ const BlogCard: FunctionComponent<BlogCardProps> = ({ post }) => {
       className="transition duration-300 hover:scale-105"
     >
       <div className="flex flex-col rounded-xl shadow-lg overflow-hidden">
-        {/* Images */}
         <div className="flex-shrink-0">
           <img
             className="h-64 w-full object-cover"
@@ -25,26 +24,21 @@ const BlogCard: FunctionComponent<BlogCardProps> = ({ post }) => {
             alt={"이미지 커버"}
           />
         </div>
-        {/* Text */}
         <div className="flex-1 bg-gray-50 pt-2 pb-6 px-4 flex flex-col justify-between">
           <div className="flex-1">
-            {/* Date */}
             <span className="block mt-2">
               <h4 className="text-xs font-medium text-gray-600">
                 {dayjs(post.date).format("LL")}
               </h4>
             </span>
-            {/* Title */}
             <span className="block mt-2">
               <h3 className="text-xl font-semibold text-gray-900">
                 {post.title}
               </h3>
             </span>
-            {/* description */}
             <span className="block mt-2">
               <h4 className="text-sm text-gray-600">{post.description}</h4>
             </span>
-            {/* tags */}
             <span className="block mt-2 space-x-4">
               {post.tags.map((tag) => (
                 <span
