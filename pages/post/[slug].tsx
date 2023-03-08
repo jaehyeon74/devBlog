@@ -4,6 +4,7 @@ import Head from "next/head";
 import NotionService from "@/services/notion-service";
 import { PostPage } from "@/@types/schema";
 import { ParsedUrlQuery } from "querystring";
+import MarkdownRenderer from "@/components/MarkdownRenderer";
 
 const Post = ({
   singlePost,
@@ -32,7 +33,7 @@ const Post = ({
         <main className="max-w-5xl mx-auto relative">
           <div className="flex items-center justify-center">
             <article className="prose">
-              <ReactMarkdown>{markdown}</ReactMarkdown>
+              <MarkdownRenderer markdown={markdown} />
             </article>
           </div>
         </main>
