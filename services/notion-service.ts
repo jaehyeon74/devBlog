@@ -81,8 +81,7 @@ export default class NotionService {
         cover = page.cover.external.url;
         break;
       default:
-        cover =
-          "https://images.unsplash.com/photo-1483401757487-2ced3fa77952?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1773&q=80";
+        cover = "";
     }
 
     return {

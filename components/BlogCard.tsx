@@ -2,6 +2,7 @@ import { BlogPost } from "@/@types/schema";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import dayjs from "dayjs";
 import Link from "next/link";
+import Image from "next/image";
 import { FunctionComponent } from "react";
 
 type BlogCardProps = {
@@ -18,9 +19,9 @@ const BlogCard: FunctionComponent<BlogCardProps> = ({ post }) => {
     >
       <div className="flex flex-col rounded-xl shadow-lg overflow-hidden">
         <div className="flex-shrink-0">
-          <img
-            className="h-64 w-full object-cover"
+          <Image
             src={post.cover}
+            className="h-64 w-full object-cover"
             alt={"이미지 커버"}
           />
         </div>
