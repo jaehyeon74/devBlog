@@ -21,7 +21,7 @@ export default class NotionService {
       },
       sorts: [
         {
-          property: "Updated",
+          property: "Created",
           direction: "descending",
         },
       ],
@@ -48,7 +48,7 @@ export default class NotionService {
       },
       sorts: [
         {
-          property: "Updated",
+          property: "Created",
           direction: "descending",
         },
       ],
@@ -84,13 +84,14 @@ export default class NotionService {
         cover =
           "https://images.unsplash.com/photo-1483401757487-2ced3fa77952?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1773&q=80";
     }
+
     return {
       id: page.id,
       cover: cover,
       title: page.properties.Name.title[0].plain_text,
       tags: page.properties.Tags.multi_select,
       description: page.properties.Description.rich_text[0].plain_text,
-      date: page.properties.Updated.last_edited_time,
+      date: page.properties.Created.created_time,
       slug: page.properties.Slug.formula.string,
     };
   }
