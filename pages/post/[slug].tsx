@@ -1,10 +1,10 @@
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 import ReactMarkdown from "react-markdown";
+import MarkdownRenderer from "@/components/MarkdownRenderer";
 import Head from "next/head";
 import NotionService from "@/services/notion-service";
-import { PostPage } from "@/@types/schema";
-import { ParsedUrlQuery } from "querystring";
-import MarkdownRenderer from "@/components/MarkdownRenderer";
+import type { PostPage } from "@/@types/schema";
+import type { ParsedUrlQuery } from "querystring";
 
 const Post = ({
   singlePost,
@@ -64,6 +64,7 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (
     props: {
       singlePost,
     },
+    revalidate: 3600,
   };
 };
 
@@ -77,7 +78,7 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: false,
+    fallback: "blocking",
   };
 }
 
