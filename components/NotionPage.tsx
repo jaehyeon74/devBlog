@@ -33,7 +33,7 @@ interface NotionPageProps {
 const NotionPage = ({ recordMap }: NotionPageProps) => {
   return (
     <NotionRenderer
-      className="relative w-auto"
+      className="relative sm:w-auto xs:w-96"
       recordMap={recordMap}
       components={{
         Code,
