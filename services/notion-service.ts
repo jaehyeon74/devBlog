@@ -1,14 +1,14 @@
 import { BlogPost, PostPage } from "@/@types/schema";
 import { Client } from "@notionhq/client";
-import { NotionToMarkdown } from "notion-to-md";
+import { NotionAPI } from "notion-client";
 
 export default class NotionService {
   client: Client;
-  notionToMarkdown: NotionToMarkdown;
+  notion: NotionAPI;
 
   constructor() {
     this.client = new Client({ auth: process.env.NOTION_ACCESS_TOKEN });
-    this.notionToMarkdown = new NotionToMarkdown({ notionClient: this.client });
+    this.notion = new NotionAPI();
   }
 
   async getPublishedBlogPosts(): Promise<BlogPost[]> {
@@ -33,8 +33,6 @@ export default class NotionService {
   }
 
   async getSingleBlogPost(slug: string): Promise<PostPage> {
-    let post, markdown;
-
     const database = process.env.NOTION_BLOG_DATABASE_ID ?? "";
     const response = await this.client.databases.query({
       database_id: database,
@@ -60,13 +58,12 @@ export default class NotionService {
 
     const page = response.results[0];
 
-    const mdBlocks = await this.notionToMarkdown.pageToMarkdown(page.id);
-    markdown = this.notionToMarkdown.toMarkdownString(mdBlocks);
-    post = NotionService.pageToPostTransformer(page);
+    const post = NotionService.pageToPostTransformer(page);
+    const recordMap = await this.notion.getPage(page.id);
 
     return {
       post,
-      markdown,
+      recordMap,
     };
   }
 

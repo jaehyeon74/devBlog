@@ -1,3 +1,5 @@
+import { ExtendedRecordMap } from "notion-types";
+
 export type Tag = {
   color: string;
   id: string;
@@ -16,5 +18,5 @@ export type BlogPost = {
 
 export type PostPage = {
   post: BlogPost;
-  markdown: string;
+  recordMap: ExtendedRecordMap;
 };

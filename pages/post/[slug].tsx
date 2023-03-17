@@ -1,15 +1,14 @@
 import { GetStaticProps, InferGetStaticPropsType } from "next";
-import ReactMarkdown from "react-markdown";
-import MarkdownRenderer from "@/components/MarkdownRenderer";
 import Head from "next/head";
 import NotionService from "@/services/notion-service";
 import type { PostPage } from "@/@types/schema";
 import type { ParsedUrlQuery } from "querystring";
+import NotionPage from "@/components/NotionPage";
 
 const Post = ({
   singlePost,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  const { post, markdown } = singlePost;
+  const { post, recordMap } = singlePost;
 
   return (
     <>
@@ -33,7 +32,7 @@ const Post = ({
         <main className="max-w-5xl mx-auto relative">
           <div className="flex items-center justify-center">
             <article className="prose">
-              <MarkdownRenderer markdown={markdown} />
+              <NotionPage recordMap={recordMap} />
             </article>
           </div>
         </main>
