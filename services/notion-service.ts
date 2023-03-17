@@ -81,6 +81,8 @@ export default class NotionService {
         cover = "";
     }
 
+    cover = typeof cover === "string" ? cover : cover.url;
+
     return {
       id: page.id,
       cover: cover,
