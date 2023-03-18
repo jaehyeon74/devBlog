@@ -4,6 +4,10 @@ import NotionService from "@/services/notion-service";
 import type { PostPage } from "@/@types/schema";
 import type { ParsedUrlQuery } from "querystring";
 import NotionPage from "@/components/NotionPage";
+import dayjs from "dayjs";
+import localizedFormat from "dayjs/plugin/localizedFormat";
+
+dayjs.extend(localizedFormat);
 
 const Post = ({
   singlePost,
@@ -30,7 +34,12 @@ const Post = ({
 
       <div className="min-h-screen">
         <main className="max-w-5xl mx-auto relative">
-          <div className="flex items-center justify-center">
+          <div className="flex flex-col items-center justify-center">
+            <div className="font-extrabold text-2xl mt-2">{post.title}</div>
+            <div className="">{}</div>
+            <h4 className="text-xs font-medium text-gray-600">
+              {dayjs(post.date).format("LL")}
+            </h4>
             <article className="prose">
               <NotionPage recordMap={recordMap} />
             </article>
