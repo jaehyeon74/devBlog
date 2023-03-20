@@ -29,12 +29,7 @@ const Home: NextPage = ({
 
       <main className="min-h-screen">
         <div className="max-w-5xl mx-auto">
-          <div className="flex items-center justify-center">
-            <h1 className="font-extrabold text-xl md:text-4xl text-black text-center">
-              {`재현의 개발블로그`}
-            </h1>
-          </div>
-          <div className="mt-12 max-w-lg mx-auto grid gap-5 lg:grid-cols-2 lg:max-w-none">
+          <div className="max-w-lg mx-auto grid gap-5 lg:grid-cols-2 lg:max-w-none">
             {posts.map((post: BlogPost) => (
               <BlogCard key={post.id} post={post} />
             ))}
