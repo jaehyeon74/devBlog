@@ -6,7 +6,9 @@ const Layout = ({ children }: PropsWithChildren) => {
   return (
     <>
       <NavBar />
-      <div className="relative mt-20 w-full min-h-screen">{children}</div>
+      <div className="relative mt-20 w-full min-h-screen dark:bg-slate-700 dark:text-white">
+        {children}
+      </div>
       <Footer />
     </>
   );

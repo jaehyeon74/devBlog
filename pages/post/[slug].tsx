@@ -32,15 +32,14 @@ const Post = ({
         <meta name={"og:image"} title={"og:image"} content={post.cover} />
       </Head>
 
-      <div className="min-h-screen">
+      <div className="min-h-screen dark:bg-slate-700 dark:text-white">
         <main className="max-w-5xl mx-auto relative">
           <div className="flex flex-col items-center justify-center">
             <div className="font-extrabold text-2xl mt-2">{post.title}</div>
-            <div className="">{}</div>
             <h4 className="text-xs font-medium text-gray-600">
               {dayjs(post.date).format("LL")}
             </h4>
-            <article className="prose">
+            <article>
               <NotionPage recordMap={recordMap} />
             </article>
           </div>
