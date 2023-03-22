@@ -18,5 +18,5 @@ module.exports = {
       ...defaultTheme.screens,
     },
   },
-  plugins: [require("@tailwindcss/typography")],
+  plugins: [],
 };
